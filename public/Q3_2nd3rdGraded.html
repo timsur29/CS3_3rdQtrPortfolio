@@ -1,6 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Club Applications 2026 (Q3 G2/3)</title>
+</head>
 <h1>Q3 2nd/3rd Graded Activity - Designing an HTML form / Using localStorage</h1>
 <h2>Club Applications 2026</h2><br>
-<form method="post" action="submit" id="clubform">
+<form method="post" action="./viewSignUps.html" id="clubform">
     <label for="stid">Student ID: </label>
     <input type="number" id="stid" required><br><br>
     <label for="name">Full Name: </label>
@@ -37,21 +42,33 @@
         <option value=12>Sightlines</option>
     </select><br><br>
     <input type="button" value="Reset" onclick="location.reload()"><br><br>
-    <input type="submit" value="Submit" onsubmit="conf()"><br><br>
+    <input type="submit" value="Submit" onclick='conf()'><br><br>
 </form>
 
 <script>
     document.getElementById("clubform").addEventListener("submit",
     function conf(event) {
         if (confirm("Are you sure you want to submit your application?")) {
-            location.reload();
+            const cform = new clubform();
+            localStorage.setItem(String(getElementByID("stid").value), JSON.stringify(cform));
         }
         else {
-            conf.preventDefault();
+            event.preventDefault();
         }
     });
+    function clubform () {
+        this.stid = Number(getElementById("stid").value);
+        this.name = getElementByID("name").value;
+        this.bday = Date(getElementById("bday").value);
+        this.mail = getElementById("mail").value;
+        this.pnum = Number(getElementById("pnum").value);
+        this.level = Number(getElementById("level").value)
+        this.iestat = document.querySelector('input[name="iestat"]:checked').value
+        this.club = getElementById("club").value;
+    }
 
 
 </script>
 
 <a>View Club Signups</a>
+</html>
