@@ -1,0 +1,85 @@
+<!doctype html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <title>Notes Demo</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width:700px; margin:20px; }
+      input, button { padding:8px; margin:4px 0; }
+      li { margin:6px 0; }
+    </style>
+  </head>
+  <body>
+    <h2>Save a Note</h2>
+
+      <input id="name" placeholder="Your name" required>
+      <input id="note" placeholder="Short note" required>
+      <button id="submit" type="submit">Save</button>
+
+
+    <h3>Saved Notes</h3>
+    <ul id="list"></ul>
+
+    <script>
+      // Helpers for localStorage
+      const KEY = 'notes';
+
+      function loadNotes() {
+        const raw = localStorage.getItem(KEY);
+
+        if (raw){  //check if raw is not null or undefined
+          return JSON.parse(raw);
+        }
+        else{
+          return [];
+        }
+      }
+
+      function saveNotes(entries) {
+        localStorage.setItem(KEY, JSON.stringify(entries));
+      }
+
+      // Render list to the page
+      function render() {
+        const notes = loadNotes();
+        const list = document.getElementById('list');
+
+
+        let output = "";
+        for (let i = 0; i < notes.length; i++) {
+          output += `<li>
+            <i>${notes[i].name}</i> (${notes[i].time}) — ${notes[i].text}
+          </li>`;
+        }
+        list.innerHTML = output;
+
+      }
+
+
+
+
+      //  read values into an object and persist
+      const submitButton = document.getElementById('submit');
+      submitButton.onclick = function()  {
+        const name = document.getElementById('name').value;
+        const text = document.getElementById('note').value;
+        
+        const obj = {
+          id: Date.now(),
+          name: name,
+          text: text,
+          time: new Date().toLocaleTimeString() // store timestamp
+        };
+
+        const notes = loadNotes();
+        notes.push(obj);           // grow the array over time
+        saveNotes(notes);          // store updated array in localStorage
+        render();
+      };
+
+
+      // Initial render on page load
+      render();
+    </script>
+  </body>
+  </html>

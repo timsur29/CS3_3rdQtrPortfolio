@@ -46,16 +46,21 @@
 </form>
 
 <script>
+
     document.getElementById("clubform").addEventListener("submit",
     function conf(event) {
         if (confirm("Are you sure you want to submit your application?")) {
             const cform = new clubform();
-            localStorage.setItem(String(getElementByID("stid").value), JSON.stringify(cform));
+            const key = "signups";
+            const existing = JSON.parse(localStorage.getItem(key) || "[]");
+            existing.push(cform);
+            localStorage.setItem(key, JSON.stringify(existing))
         }
         else {
             event.preventDefault();
         }
     });
+
     function clubform () {
         this.stid = Number(getElementById("stid").value);
         this.name = getElementByID("name").value;
@@ -66,6 +71,12 @@
         this.iestat = document.querySelector('input[name="iestat"]:checked').value
         this.club = getElementById("club").value;
     }
+
+    function load() {
+        const signups = localStorage.getItem(signups);
+    }
+
+    window.addEventListener('load', load)
 
 
 </script>
