@@ -42,7 +42,7 @@
         <option value=12>Sightlines</option>
     </select><br><br>
     <input type="button" value="Reset" onclick="location.reload()"><br><br>
-    <input type="submit" value="Submit" onclick='conf()'><br><br>
+    <input type="submit" value="Submit"><br><br>
 </form>
 
 <script>
@@ -56,22 +56,20 @@
             const existing = JSON.parse(localStorage.getItem(key) || "[]");
             existing.push(cform);
             localStorage.setItem(key, JSON.stringify(existing))
-            window.location.href("viewSignUps.html")
+            window.location.href = "viewSignUps.html"
         }
     });
 
     function clubform () {
-        this.stid = Number(getElementById("stid").value);
-        this.name = getElementByID("name").value;
-        this.bday = Date(getElementById("bday").value);
-        this.mail = getElementById("mail").value;
-        this.pnum = Number(getElementById("pnum").value);
-        this.level = Number(getElementById("level").value)
+        this.stid = Number(document.getElementById("stid").value);
+        this.name = document.getElementById("name").value;
+        this.bday = Date(document.getElementById("bday").value);
+        this.mail = document.getElementById("mail").value;
+        this.pnum = Number(document.getElementById("pnum").value);
+        this.level = Number(document.getElementById("level").value)
         this.iestat = document.querySelector('input[name="iestat"]:checked').value
-        this.club = getElementById("club").value;
+        this.club = document.getElementById("club").value;
     }
-
-    window.addEventListener('load', load)
 
 
 </script>
