@@ -49,12 +49,14 @@
 
     document.getElementById("clubform").addEventListener("submit",
     function conf(event) {
+        event.preventDefault()
         if (confirm("Are you sure you want to submit your application?")) {
             const cform = new clubform();
             const key = "signups";
             const existing = JSON.parse(localStorage.getItem(key) || "[]");
             existing.push(cform);
             localStorage.setItem(key, JSON.stringify(existing))
+            window.location.href("viewSignUps.html")
         }
         else {
             event.preventDefault();
