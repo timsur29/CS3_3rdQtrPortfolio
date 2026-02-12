@@ -4,6 +4,38 @@
         <title>View Signups (Q3 G2)</title>
     </head>
     <body>
-        <h1>temp</h1>
+        <h1>View Club Signups</h1><br>
+
+        <form id="filter">
+            <select name="Select Your Club: " required>
+                <option value="all">All</option>
+                <option value="Alianti">Alianti</option>
+                <option value="Alyabo">Alyabo</option>
+                <option value="Exposure">Exposure</option>
+                <option value="SARS+">SARS+</option>
+                <option value="Sightlines">Sightlines</option>
+            </select>
+        </form>
+
+        <table>
+            <tr>
+                <th>Student ID</th>
+                <th>Full Name</th>
+                <th>Date of Birth</th>
+                <th>Student Email</th>
+                <th>Mobile Phone Number</th>
+                <th>Grade Level</th>
+                <th>Intern/Extern Status</th>
+                <th>Preferred Organization</th>
+            </tr>
+        </table>
     </body>
+
+    <script>
+        //get stored data
+        const key = "signups";
+        const existing = JSON.parse(localStorage.getItem(key) || []);
+
+
+    </script>
 </html>
