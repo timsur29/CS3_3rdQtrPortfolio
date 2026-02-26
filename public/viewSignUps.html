@@ -6,8 +6,8 @@
     <body>
         <h1>View Club Signups</h1><br>
 
-        <form id="filter">
-            <select name="Select Your Club: " required>
+        <form>
+            <select name="Select Your Club: " id="filter" required>
                 <option value="all">All</option>
                 <option value="Alianti">Alianti</option>
                 <option value="Alyabo">Alyabo</option>
@@ -17,7 +17,7 @@
             </select>
         </form>
 
-        <table>
+        <table id="tab">
             <tr>
                 <th>Student ID</th>
                 <th>Full Name</th>
@@ -36,6 +36,29 @@
         const key = "signups";
         const existing = JSON.parse(localStorage.getItem(key) || []);
 
+        createTable("all");
+
+        filter = document.getElementById("filter");
+
+        filter.addEventListener('change', createTable(filter.value));
+
+        function createTable(tabmode) {
+            const tab = document.getElementById("tab");
+            for (let i=tab.rows.length; i>0; i++) {
+                tab.deleteRow(i)
+            }
+
+            if (tabmode == "all") {
+                let keylist = Object.keys(existing[i])
+                for (let i=0; i<existing.length; i++) {
+                    row = tab.insertRow(i)
+                    for (let j=0; j<8; j++) {
+                        cell = row.insertCell[j];
+                        cell.textContent = existing[i][keylist[j].toString()]
+                    }
+                }
+            }
+        }
 
     </script>
 </html>
