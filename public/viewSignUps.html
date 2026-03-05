@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>View Signups (Q3 G2)</title>
+        <link rel="stylesheet" href="./styleindex.css">
     </head>
     <body>
         <h1>View Club Signups</h1><br>
@@ -18,7 +19,7 @@
         </form>
 
         <table id="tab">
-            <tr>
+            <thead>
                 <th>Student ID</th>
                 <th>Full Name</th>
                 <th>Date of Birth</th>
@@ -27,37 +28,108 @@
                 <th>Grade Level</th>
                 <th>Intern/Extern Status</th>
                 <th>Preferred Organization</th>
-            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
         </table>
     </body>
 
     <script>
         //get stored data
         const key = "signups";
-        const existing = JSON.parse(localStorage.getItem(key) || []);
+        const existing = JSON.parse(localStorage.getItem(key));
 
         createTable("all");
 
         filter = document.getElementById("filter");
 
-        filter.addEventListener('change', createTable(filter.value));
+        filter.addEventListener('change', () => createTable(filter.value));
 
         function createTable(tabmode) {
             const tab = document.getElementById("tab");
-            for (let i=tab.rows.length; i>0; i++) {
-                tab.deleteRow(i)
+            const tbody = tab.querySelector("tbody");
+            while (tbody.firstChild) {
+                tbody.removeChild(tbody.firstChild);
             }
 
             if (tabmode == "all") {
-                let keylist = Object.keys(existing[i])
                 for (let i=0; i<existing.length; i++) {
-                    row = tab.insertRow(i)
+                    row = tbody.insertRow()
+                    keylist = Object.keys(existing[i])
                     for (let j=0; j<8; j++) {
-                        cell = row.insertCell[j];
-                        cell.textContent = existing[i][keylist[j].toString()]
+                        cell = row.insertCell(j);
+                        cell.textContent = existing[i][keylist[j]];
                     }
                 }
             }
+
+            if (tabmode == "Alianti") {
+                for (let i=0; i<existing.length; i++) {
+                    if (existing[i].club == "Alianti") {
+                        row = tbody.insertRow()
+                        keylist = Object.keys(existing[i])
+                        for (let j=0; j<8; j++) {
+                            cell = row.insertCell(j);
+                            cell.textContent = existing[i][keylist[j]];
+                        }
+                    }
+                }
+            }
+
+            if (tabmode == "Alyabo") {
+                for (let i=0; i<existing.length; i++) {
+                    if (existing[i].club == "Alyabo") {
+                        row = tbody.insertRow()
+                        keylist = Object.keys(existing[i])
+                        for (let j=0; j<8; j++) {
+                            cell = row.insertCell(j);
+                            cell.textContent = existing[i][keylist[j]];
+                        }
+                    }
+                }
+            }
+
+            if (tabmode == "Exposure") {
+                for (let i=0; i<existing.length; i++) {
+                    if (existing[i].club == "Exposure") {
+                        row = tbody.insertRow()
+                        keylist = Object.keys(existing[i])
+                        for (let j=0; j<8; j++) {
+                            cell = row.insertCell(j);
+                            cell.textContent = existing[i][keylist[j]];
+                        }
+                    }
+                }
+            }
+
+            if (tabmode == "SARS+") {
+                for (let i=0; i<existing.length; i++) {
+                    if (existing[i].club == "SARS+") {
+                        row = tbody.insertRow()
+                        keylist = Object.keys(existing[i])
+                        for (let j=0; j<8; j++) {
+                            cell = row.insertCell(j);
+                            cell.textContent = existing[i][keylist[j]];
+                        }
+                    }
+                }
+            }
+
+            if (tabmode == "Sightlines") {
+                for (let i=0; i<existing.length; i++) {
+                    if (existing[i].club == "Sightlines") {
+                        row = tbody.insertRow()
+                        keylist = Object.keys(existing[i])
+                        for (let j=0; j<8; j++) {
+                            cell = row.insertCell(j);
+                            cell.textContent = existing[i][keylist[j]];
+                        }
+                    }
+                }
+            }
+
+
         }
 
     </script>

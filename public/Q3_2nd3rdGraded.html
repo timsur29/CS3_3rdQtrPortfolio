@@ -34,12 +34,12 @@
     <label for="club">Preferred Organization: </label>
     <select name="club" id="club" required>
         <option disabled selected hidden>Choose a club</option>
-        <option value=7>Alianti</option>
-        <option value=8>Alyabo</option>
-        <option value=9>Exposure</option>
-        <option value=10>PisayXYZ</option>
-        <option value=11>SARS+</option>
-        <option value=12>Sightlines</option>
+        <option value="Alianti">Alianti</option>
+        <option value="Alyabo">Alyabo</option>
+        <option value="Exposure">Exposure</option>
+        <option value="PisayXYZ">PisayXYZ</option>
+        <option value="SARS+">SARS+</option>
+        <option value="Sightlines">Sightlines</option>
     </select><br><br>
     <input type="button" value="Reset" onclick="location.reload()"><br><br>
     <input type="submit" value="Submit"><br><br>
@@ -63,13 +63,13 @@
     function clubform () {
         this.stid = Number(document.getElementById("stid").value);
         this.name = document.getElementById("name").value;
-        this.bday = Date(document.getElementById("bday").value);
+        this.bday = document.getElementById("bday").value;
         this.mail = document.getElementById("mail").value;
         this.pnum = Number(document.getElementById("pnum").value);
-        this.level = Number(document.getElementById("level").value)
+        this.level = Number(document.getElementById("level").value);
         this.iestat = document.querySelector('input[name="iestat"]:checked').value
         this.club = document.getElementById("club").value;
-    }
+    }   
 
 
 </script>
