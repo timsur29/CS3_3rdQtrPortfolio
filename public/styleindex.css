@@ -97,3 +97,7 @@ table, td, th {
     font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';    
     border-radius: 5%;
 }
+
+input :focus, :hover, :active {
+    border-color: gold;
+}
